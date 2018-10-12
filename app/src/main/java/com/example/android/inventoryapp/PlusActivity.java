@@ -21,6 +21,7 @@ import com.example.android.Inventory_app_stage_1.data.InventoryContract;
 import com.example.android.Inventory_app_stage_1.data.InventoryContract.InventoryEntry;
 import com.example.android.Inventory_app_stage_1.data.InventoryDbHelper;
 import com.example.android.inventoryapp.R;
+import com.example.android.inventoryapp.data.InventoryContract;
 
 public class PlusActivity extends AppCompatActivity {
 
@@ -62,15 +63,15 @@ public class PlusActivity extends AppCompatActivity {
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
                     if (selection.equals(getString(R.string.supplier_amazon))) {
-                        SupplierName = InventoryEntry.SUPPLIER_AMAZON;
+                        SupplierName = InventoryContract.InventoryEntry;
                     } else if (selection.equals(getString(R.string.supplier_thalia))) {
-                        SupplierName = InventoryEntry.SUPPLIER_THALIA;
+                        SupplierName = InventoryContract.InventoryEntry;
                     } else if (selection.equals(getString(R.string.supplier_exlibris))) {
-                        SupplierName = InventoryEntry.SUPPLIER_EXLIBRIS;
+                        SupplierName = InventoryContract.InventoryEntry;
                     } else if (selection.equals(getString(R.string.supplier_national_geographic))) {
-                        SupplierName = InventoryEntry.SUPPLIER_NATIONAL_GEOGRAPHIC;
+                        SupplierName = InventoryContract.InventoryEntry
                     } else {
-                        SupplierName = InventoryEntry.SUPPLIER_UNKNOWN;
+                        SupplierName = InventoryContract.SUPPLIER_UNKNOWN;
                     }
                 }
             }
@@ -102,13 +103,13 @@ public class PlusActivity extends AppCompatActivity {
 
         ContentValues values = new ContentValues();
         values.put( InventoryContract.InventoryEntry.COLUMN_BOOK_NAME, bookNameString);
-        values.put( InventoryEntry.COLUMN_BOOK_PRICE, bookPriceInteger);
-        values.put( InventoryEntry.COLUMN_BOOK_QUANTITY, bookQuantityInteger);
-        values.put( InventoryEntry.COLUMN_BOOK_SUPPLIER_NAME, SupplierName);
-        values.put( InventoryEntry.COLUMN_BOOK_SUPPLIER_ADRESSE,bookSupplierAdresseString );
-        values.put( InventoryEntry.COLUMN_BOOK_SUPPLIER_PHONE_NUMBER, bookSupplierPhoneNumberInteger);
+        values.put( InventoryContract.COLUMN_BOOK_PRICE, bookPriceInteger);
+        values.put( InventoryContract.COLUMN_BOOK_QUANTITY, bookQuantityInteger);
+        values.put( InventoryContract.COLUMN_BOOK_SUPPLIER_NAME, SupplierName);
+        values.put( InventoryContract.COLUMN_BOOK_SUPPLIER_ADRESSE,bookSupplierAdresseString );
+        values.put( InventoryContract.COLUMN_BOOK_SUPPLIER_PHONE_NUMBER, bookSupplierPhoneNumberInteger);
 
-        long newRowId = db.insert( InventoryEntry.TABLE_NAME, null, values);
+        long newRowId = db.insert( InventoryContract.TABLE_NAME, null, values);
 
         if (newRowId == -1) {
             Toast.makeText(this, "Error save book", Toast.LENGTH_SHORT).show();
